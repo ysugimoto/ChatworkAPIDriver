@@ -119,7 +119,6 @@ class Chatwork_Connector {
      */
     protected function _curlRequest($method, $uri, $header, $postBody)
     {
-        echo "Reuested to: " . $uri . PHP_EOL;
         $handle    = curl_init();
         $userAgent = ( isset($_SERVER['HTTP_USER_AGENT']) ) ? $_SERVER['HTTP_USER_AGENT'] : 'ChatworkAPI Connector';
         $header[]  = 'X-ChatWorkToken: ' . $this->apiKey;
@@ -177,9 +176,6 @@ class Chatwork_Connector {
             $movedURI = preg_replace('|.+href="([^"]+)".+|is', '$1', $response->body);
             return $this->request($method, $movedURI, $header, $postBody);
         }
-        
-        echo "Response:" . PHP_EOL;
-        var_dump($response);
         
         return $response;
     }
